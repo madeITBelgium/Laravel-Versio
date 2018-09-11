@@ -86,6 +86,11 @@ class Versio
         return $this->call('GET', $url);
     }
 
+    public function delete($url)
+    {
+        return $this->call('DELETE', $url);
+    }
+
     public function post($url, $data)
     {
         return $this->call('POST', $url, $data);

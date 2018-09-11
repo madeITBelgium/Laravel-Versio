@@ -42,6 +42,6 @@ class TLD
 
     public function info()
     {
-        return $this->versio->delete('/tld/info');
+        return $this->versio->get('/tld/info');
     }
 }
