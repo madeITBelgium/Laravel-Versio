@@ -9,6 +9,7 @@ class ValidatorTest extends \PHPUnit\Framework\TestCase
     {
         parent::setUp();
     }
+
     /*
     public function testValidatorDomainavaibleTrue()
     {
@@ -24,8 +25,8 @@ class ValidatorTest extends \PHPUnit\Framework\TestCase
 
     public function testValidUser()
     {
-        $domainname = 'test' . time() . '.be';
-        
+        $domainname = 'test'.time().'.be';
+
         $validator = Mockery::mock('MadeITBelgium\Versio\Validation\Validator');
         $extensions = new ValidatorExtensions($validator);
         $container = Mockery::mock('Illuminate\Container\Container');
@@ -41,7 +42,7 @@ class ValidatorTest extends \PHPUnit\Framework\TestCase
     public function testValidUserFails()
     {
         $domainname = 'madeit.be';
-        
+
         $validator = Mockery::mock('MadeITBelgium\Versio\Validation\Validator');
         $extensions = new ValidatorExtensions($validator);
         $container = Mockery::mock('Illuminate\Container\Container');

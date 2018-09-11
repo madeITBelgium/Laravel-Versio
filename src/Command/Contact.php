@@ -34,7 +34,7 @@ class Contact
     {
         return $this->versio;
     }
-    
+
     public function create($data)
     {
         return $this->versio->post('/contacts', $data);
@@ -42,9 +42,9 @@ class Contact
 
     public function delete($contactID)
     {
-        return $this->versio->delete('/contacts/' . $contactID);
+        return $this->versio->delete('/contacts/'.$contactID);
     }
-    
+
     public function all()
     {
         return $this->versio->get('/contacts');
@@ -52,6 +52,6 @@ class Contact
 
     public function resendvalidation($contactID)
     {
-        return $this->versio->post('/contacts/' . $contactID . '/resendvalidation');
+        return $this->versio->post('/contacts/'.$contactID.'/resendvalidation');
     }
 }

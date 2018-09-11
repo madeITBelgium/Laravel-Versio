@@ -34,70 +34,69 @@ class Domain
     {
         return $this->versio;
     }
-    
+
     public function check($domainname)
     {
-        return $this->versio->get('/domains/' . $domainname . '/availability');
+        return $this->versio->get('/domains/'.$domainname.'/availability');
     }
 
     public function delete($domainname)
     {
-        return $this->versio->delete('/domains/' . $domainname);
+        return $this->versio->delete('/domains/'.$domainname);
     }
-    
+
     public function get($domainname)
     {
-        return $this->versio->get('/domains/' . $domainname);
+        return $this->versio->get('/domains/'.$domainname);
     }
 
     public function all($status = null)
     {
-        
-        return $this->versio->get('/domains' . ($status != null ? "?status=" . $status : ''));
+        return $this->versio->get('/domains'.($status != null ? '?status='.$status : ''));
     }
 
     public function register($domain, $contactID, $years = 1, $auto_renew = true, $ns = [])
     {
-        return $this->versio->post('/domains/' . $domain, [
-            'contact_id' => $contactID, 
-            'years' => $years, 
-            'auto_renew' => $auto_renew, 
-            'ns' => $ns
+        return $this->versio->post('/domains/'.$domain, [
+            'contact_id' => $contactID,
+            'years'      => $years,
+            'auto_renew' => $auto_renew,
+            'ns'         => $ns,
         ]);
     }
 
     public function renew($domain, $years)
     {
-        return $this->versio->post('/domains/' . $domain . '/renew', [
+        return $this->versio->post('/domains/'.$domain.'/renew', [
             'years' => $years,
         ]);
     }
 
     public function transfer($domain, $contactID, $auth_code, $years = 1, $auto_renew = true, $ns = [])
     {
-        return $this->versio->post('/domains/' . $domain . '/transfer', [
-            'contact_id' => $contactID, 
-            'years' => $years,
-            'auth_code' => $auth_code,
-            'auto_renew' => $auto_renew, 
-            'ns' => $ns
+        return $this->versio->post('/domains/'.$domain.'/transfer', [
+            'contact_id' => $contactID,
+            'years'      => $years,
+            'auth_code'  => $auth_code,
+            'auto_renew' => $auto_renew,
+            'ns'         => $ns,
         ]);
     }
-    
+
     public function transferOut($domain, $tag)
     {
-        return $this->versio->post('/domains/' . $domain . '/update/nominettag', [
+        return $this->versio->post('/domains/'.$domain.'/update/nominettag', [
             'tag' => $tag,
         ]);
     }
-    
+
     public function transferStatus($domain, $process_id)
     {
-        return $this->versio->get('/domains/' . $domain . '/transfer/' . $process_id);
+        return $this->versio->get('/domains/'.$domain.'/transfer/'.$process_id);
     }
-    
+
     public function update($domain, $data)
     {
-        return $this->versio->post('/domains/' . $domain . '/update', $data);
+        return $this->versio->post('/domains/'.$domain.'/update', $data);
     }
 }

@@ -34,10 +34,10 @@ class TLD
     {
         return $this->versio;
     }
-    
+
     public function get($tld)
     {
-        return $this->versio->get('/tld/info/' . $tld);
+        return $this->versio->get('/tld/info/'.$tld);
     }
 
     public function info()

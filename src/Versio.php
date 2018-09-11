@@ -30,9 +30,9 @@ class Versio
      */
     public function __construct($username, $password, $client = null, $test = false)
     {
-        $hostname = "https://www.versio.nl/api/v1";
-        if($test) {
-            $hostname = "https://www.versio.nl/testapi/v1";
+        $hostname = 'https://www.versio.nl/api/v1';
+        if ($test) {
+            $hostname = 'https://www.versio.nl/testapi/v1';
         }
 
         if ($client == null) {
@@ -41,8 +41,8 @@ class Versio
                 'timeout'  => 5.0,
                 'headers'  => [
                     'User-Agent' => 'Made I.T. Versio SDK V'.$this->version,
-                    'Accept' => 'application/json',
-                    'auth' => [$username, $password],
+                    'Accept'     => 'application/json',
+                    'auth'       => [$username, $password],
                 ],
                 'verify' => true,
             ]);
@@ -77,18 +77,20 @@ class Versio
         } else {
             throw \Exception('Versio error: '.$response->getStatusCode());
         }
-        
+
         return json_decode($body, true);
     }
-    
-    public function get($url) {
+
+    public function get($url)
+    {
         return $this->call('GET', $url);
     }
-    
-    public function post($url, $data) {
+
+    public function post($url, $data)
+    {
         return $this->call('POST', $url, $data);
     }
-    
+
     public function contact()
     {
         $contact = new Command\Contact();
