@@ -44,7 +44,7 @@ class Versio
                     'Accept'     => 'application/json',
                 ],
                 'auth'       => [$username, $password],
-                'verify' => true,
+                'verify'     => true,
             ]);
         } else {
             $this->client = $client;
