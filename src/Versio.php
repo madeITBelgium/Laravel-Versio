@@ -18,6 +18,7 @@ class Versio
     protected $version = '0.0.1';
 
     private $client;
+    private $test;
 
     private $lastResultCode;
 
@@ -30,7 +31,9 @@ class Versio
      */
     public function __construct($username, $password, $client = null, $test = false)
     {
-        $hostname = 'https://www.versio.nl/api/v1';
+        $this->test = $test;
+        
+        $hostname = 'https://www.versio.nl';
         if ($test) {
             $hostname = 'https://www.versio.nl/testapi/v1';
         }
@@ -71,7 +74,7 @@ class Versio
     private function call($type, $url, $parameters = [])
     {
         $headers = ['form_params' => $parameters];
-        $response = $this->client->request($type, $url, $headers);
+        $response = $this->client->request($type, '/' . $this->test ? 'test' : '' . 'api/v1' . $url, $headers);
         if ($response->getStatusCode() == 200) {
             $body = (string) $response->getBody();
         } else {
