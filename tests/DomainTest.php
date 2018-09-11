@@ -20,7 +20,7 @@ class DomainTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals($versio, $domain->getVersio());
     }
-    
+
     public function testCreateUser()
     {
         $versio = new Versio('test', 'test');

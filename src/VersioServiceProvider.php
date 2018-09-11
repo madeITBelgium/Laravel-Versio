@@ -18,7 +18,7 @@ class VersioServiceProvider extends ServiceProvider
     protected $defer = false;
 
     protected $rules = [
-        'domainvailable'
+        'domainvailable',
     ];
 
     /**
