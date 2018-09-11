@@ -42,8 +42,8 @@ class Versio
                 'headers'  => [
                     'User-Agent' => 'Made I.T. Versio SDK V'.$this->version,
                     'Accept'     => 'application/json',
-                    'auth'       => [$username, $password],
                 ],
+                'auth'       => [$username, $password],
                 'verify' => true,
             ]);
         } else {
