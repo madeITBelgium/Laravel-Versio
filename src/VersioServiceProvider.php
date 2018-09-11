@@ -46,7 +46,7 @@ class VersioServiceProvider extends ServiceProvider
         $this->app->singleton('versio', function ($app) {
             $config = $app->make('config')->get('versio');
 
-            return new VestaCP($config['email'], $config['password'], null, $config['test']);
+            return new Versio($config['email'], $config['password'], null, $config['test']);
         });
     }
 
