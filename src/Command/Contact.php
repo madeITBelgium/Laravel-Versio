@@ -50,6 +50,11 @@ class Contact
         return $this->versio->get('/contacts');
     }
 
+    public function get($contactID)
+    {
+        return $this->versio->get('/contacts/'.$contactID);
+    }
+
     public function resendvalidation($contactID)
     {
         return $this->versio->post('/contacts/'.$contactID.'/resendvalidation');
