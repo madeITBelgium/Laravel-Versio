@@ -70,8 +70,8 @@ class Versio
      */
     private function call($type, $url, $parameters = [])
     {
-        \Log::info($url);
-        \Log::info(json_encode($parameters));
+        //\Log::info($url);
+        //\Log::info(json_encode($parameters));
         $headers = ['json' => $parameters];
         $response = $this->client->request($type, ltrim($url, '/'), $headers);
         if ($response->getStatusCode() == 200 || $response->getStatusCode() == 201) {
