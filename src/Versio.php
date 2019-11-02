@@ -72,8 +72,8 @@ class Versio
      */
     private function call($type, $url, $parameters = [])
     {
-        \Log::info($url);
-        \Log::info(json_encode($parameters));
+        //\Log::info($url);
+        //\Log::info(json_encode($parameters));
         $headers = ['json' => $parameters];
         try {
             $response = $this->client->request($type, ltrim($url, '/'), $headers);
