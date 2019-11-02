@@ -3,6 +3,8 @@
 namespace MadeITBelgium\Versio;
 
 use GuzzleHttp\Client;
+use MadeITBelgium\Versio\Exceptions\ContactNotFoundException;
+use MadeITBelgium\Versio\Exceptions\RateLimitException;
 
 /**
  * Versio API.
@@ -73,7 +75,24 @@ class Versio
         \Log::info($url);
         \Log::info(json_encode($parameters));
         $headers = ['json' => $parameters];
-        $response = $this->client->request($type, ltrim($url, '/'), $headers);
+        try {
+            $response = $this->client->request($type, ltrim($url, '/'), $headers);
+        }
+        catch(\GuzzleHttp\Exception\ClientException $e) {
+            if ($e->getCode() == 401) {
+                $response = $e->getResponse();
+                $error = json_decode((string) $response->getBody());
+                if($error->error->message === 'ObjectDoesNotExist|Contact not found') {
+                    throw new ContactNotFoundException($e);
+                }
+            }
+            else if($e->getCode() === 429) {
+                throw new RateLimitException($e);
+            }
+            throw $e;
+        }
+        
+        \Log::info($response->getHeaders());
         if ($response->getStatusCode() == 200 || $response->getStatusCode() == 201) {
             $body = (string) $response->getBody();
         } else {

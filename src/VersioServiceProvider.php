@@ -3,6 +3,7 @@
 namespace MadeITBelgium\Versio;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 /**
  * Versio API.
@@ -69,7 +70,7 @@ class VersioServiceProvider extends ServiceProvider
 
     protected function extendValidator($rule)
     {
-        $method = 'validate'.studly_case($rule);
+        $method = 'validate'.Str::studly($rule);
         $translation = $this->app['translator']->get('versio::validation');
         $this->app['validator']->extend($rule, 'MadeITBelgium\Versio\Validation\ValidatorExtensions@'.$method, $translation[$rule]);
     }
