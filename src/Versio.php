@@ -72,8 +72,6 @@ class Versio
      */
     private function call($type, $url, $parameters = [])
     {
-        //\Log::info($url);
-        //\Log::info(json_encode($parameters));
         $headers = ['json' => $parameters];
         try {
             $response = $this->client->request($type, ltrim($url, '/'), $headers);
@@ -92,7 +90,6 @@ class Versio
             throw $e;
         }
         
-        \Log::info($response->getHeaders());
         if ($response->getStatusCode() == 200 || $response->getStatusCode() == 201) {
             $body = (string) $response->getBody();
         } else {
