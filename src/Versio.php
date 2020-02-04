@@ -89,7 +89,7 @@ class Versio
 
             throw $e;
         }
-        
+
         if ($response->getStatusCode() == 200 || $response->getStatusCode() == 201) {
             $body = (string) $response->getBody();
         } else {
