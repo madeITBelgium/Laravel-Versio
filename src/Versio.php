@@ -40,7 +40,7 @@ class Versio
         if ($client == null) {
             $this->client = new Client([
                 'base_uri' => $hostname,
-                'timeout'  => 5.0,
+                'timeout'  => 20.0,
                 'headers'  => [
                     'User-Agent' => 'Made I.T. Versio SDK V'.$this->version,
                     'Accept'     => 'application/json',
