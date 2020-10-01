@@ -15,13 +15,13 @@ class ValidatorTest extends \PHPUnit\Framework\TestCase
     {
         $validator = new MadeITBelgium\Versio\Validation\Validator();
         $this->assertTrue($validator->isDomainAvailable('test' . time() . '.be'));
-    }*/
+    }
 
     public function testValidatorUserFalse()
     {
         $validator = new MadeITBelgium\Versio\Validation\Validator();
         $this->assertFalse($validator->isDomainAvailable('madeit.be'));
-    }
+    }*/
 
     public function testValidUser()
     {
