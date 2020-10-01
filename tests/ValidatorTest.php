@@ -47,13 +47,17 @@ class ValidatorTest extends \PHPUnit\Framework\TestCase
         $extensions = new ValidatorExtensions($validator);
         $container = Mockery::mock('Illuminate\Container\Container');
         $translator = Mockery::mock('Illuminate\Contracts\Translation\Translator');
+        
         $container->shouldReceive('make')->once()->with('MadeITBelgium\Versio\Validation\ValidatorExtensions')->andReturn($extensions);
         $validator->shouldReceive('isDomainAvailable')->once()->with($domainname)->andReturn(false);
-        $translator->shouldReceive('trans')->once()->with('validation.custom')->andReturn('validation.custom');
-        $translator->shouldReceive('trans')->once()->with('validation.custom.foo.user')->andReturn('validation.custom.foo.user');
-        $translator->shouldReceive('trans')->once()->with('validation.user')->andReturn('validation.user');
-        $translator->shouldReceive('trans')->once()->with('validation.attributes')->andReturn('validation.attributes');
-        $translator->shouldReceive('trans')->once()->with('validation.attributes.foo')->andReturn('validation.attributes.foo');
+        
+        $translator->shouldReceive('get')->once()->with('validation.custom')->andReturn('validation.custom');
+        $translator->shouldReceive('get')->once()->with('validation.custom.foo.user')->andReturn('validation.custom.foo.user');
+        $translator->shouldReceive('get')->once()->with('validation.user')->andReturn('validation.user');
+        $translator->shouldReceive('get')->once()->with('validation.attributes')->andReturn('validation.attributes');
+        $translator->shouldReceive('get')->once()->with('validation.attributes.foo')->andReturn('validation.attributes.foo');
+        $translator->shouldReceive('get')->once()->with('validation.values.foo.' . $domainname)->andReturn('validation.values.foo.' . $domainname);
+        
         $factory = new Factory($translator, $container);
         $factory->extend('user', 'MadeITBelgium\Versio\Validation\ValidatorExtensions@validatedomainvailable', ':attribute is not available.');
         $validator = $factory->make(['foo' => $domainname], ['foo' => 'user']);
